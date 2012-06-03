@@ -1,0 +1,15 @@
+- title "New Score"
+.row
+  .span12
+    .btn-header
+      = link_to "All Workouts", workouts_path, :class => "btn btn-large"
+      = link_to "View Workout", workout_path(@workout), :class => "btn btn-large"
+.row
+  .span12
+    %h2= @workout.name.empty? ? @workout.created_at.to_s(:long) : @workout.name
+    - unless @workout.name.empty?
+      %h4= @workout.created_at.to_s(:long)
+.row
+  .span12
+    %p= simple_format @workout.workout
+= render 'form'

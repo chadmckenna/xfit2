@@ -1,0 +1,7 @@
+one:
+  workout_id: 1
+  score: MyString
+
+two:
+  workout_id: 1
+  score: MyString

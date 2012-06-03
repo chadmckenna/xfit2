@@ -1,0 +1,7 @@
+- title "Edit Workout"
+.row
+  .span12
+    .btn-header
+      = link_to "All Workouts", workouts_path, :class => "btn btn-large"
+      = link_to "View Workout", @workout, :class => "btn btn-large"
+= render 'form'

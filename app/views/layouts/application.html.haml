@@ -1,0 +1,30 @@
+!!!
+%html
+  %head
+    %title= content_for?(:title) ? yield(:title) : "Untitled"
+    = stylesheet_link_tag "application"
+    = javascript_include_tag "application"
+    = csrf_meta_tag
+    = yield(:head)
+  %body
+    .navbar.navbar-fixed-top
+      .navbar-inner
+        .container
+          = link_to "xfit", root_path, :class => "brand"
+          %ul.nav.pull-right
+            %li= link_to "Login", "#"
+            %li= link_to "Sign Up", "#"
+    .container
+      %section#header
+        .row
+          .span12
+            .page-header
+              %h1= content_for?(:title) ? yield(:title) : "Untitled"
+      %section#messages
+        .row
+          .span12
+            - flash.each do |name, msg|
+              %div{:class => "alert alert-#{name}"}
+                %button.close{"data-dismiss" => "alert", :type => "button"}×
+                %div= msg
+      = yield

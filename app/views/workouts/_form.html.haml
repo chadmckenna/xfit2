@@ -1,0 +1,20 @@
+.row
+  .span12
+    = form_for @workout, :html => {:class => "form-horizontal well"} do |f|
+      = f.error_messages
+      %fieldset
+        .control-group
+          = f.label :workout_name, :class => "control-label", :size => '35'
+          .controls
+            = f.text_field :name
+            %p.help-block
+              The workout name is optional. If you do not input a name, it will be displayed as the date it was created.
+        .control-group
+          = f.label :workout, :class => "control-label"
+          .controls
+            = f.text_area :workout, :rows => "12", :style => "width: 95%;"
+            %p.help-block
+              This is where the workout is inputted. You can use tags such as #example_tag to tag different movements in the workout to better filter workouts.
+        .form-actions
+          = f.submit :class => "btn-success"
+          = link_to 'Cancel', workouts_path, :class => "btn"
