@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.1'
+gem "execjs", ">= 1.2.0"
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -22,10 +23,10 @@ end
 
 group :development do
   gem 'nifty-generators'
+  gem 'heroku'
 end
 
 group :production do
-  gem 'therubyracer-heroku', '0.8.1.pre3' # you will need this too
   gem 'pg'
 end
 
