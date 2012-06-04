@@ -31,6 +31,7 @@ group :production do
 end
 
 gem 'jquery-rails'
+gem 'less-rails'
 gem 'less-rails-bootstrap'
 gem 'therubyracer', :platform => :ruby
 

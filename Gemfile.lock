@@ -152,6 +152,7 @@ DEPENDENCIES
   heroku
   jquery-rails
   json
+  less-rails
   less-rails-bootstrap
   mocha
   nifty-generators
