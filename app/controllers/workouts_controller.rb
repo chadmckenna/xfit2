@@ -1,7 +1,12 @@
 class WorkoutsController < ApplicationController
   def index
-    # @workouts = Workout.find(:all, :order => 'created_at DESC')
-    @workouts = Workout.paginate(:page => params[:page]).order('created_at DESC')
+    if params[:filter].eql? "created"
+      @workouts = Workout.where(:user_id => current_user.id).paginate(:page => params[:page]).order('created_at DESC')
+    elsif params[:filter].eql? "completed"
+      @workouts = Workout.where(:id => Score.where(:user_id => current_user.id).pluck(:workout_id)).paginate(:page => params[:page]).order('created_at DESC')
+    else
+      @workouts = Workout.paginate(:page => params[:page]).order('created_at DESC')
+    end
   end
 
   def show
@@ -14,6 +19,7 @@ class WorkoutsController < ApplicationController
 
   def create
     @workout = Workout.new(params[:workout])
+    @workout.user_id = current_user.id
     if @workout.save
       flash[:success] = "Successfully created workout."
       redirect_to @workout

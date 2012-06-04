@@ -14,6 +14,7 @@ class ScoresController < ApplicationController
 
   def create
     @score = Score.new(params[:score])
+    @score.user_id = current_user.id
     if @score.save
       flash[:success] = "Successfully created score."
       redirect_to workout_path(@score.workout_id)

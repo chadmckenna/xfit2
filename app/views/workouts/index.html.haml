@@ -5,6 +5,12 @@
       .btn-header
         = link_to "New Workout", new_workout_path, :class => "btn btn-primary btn-large"
   .row
+    .span12
+      .btn-group.btn-header
+        = link_to "All Workouts", "?filter=all", :class => "btn"
+        = link_to "My Created Workouts", "?filter=created", :class => "btn"
+        = link_to "My Complete Workouts", "?filter=completed", :class => "btn"
+  .row
     .span12.text-align-center
       = will_paginate @workouts
   - for workout in @workouts

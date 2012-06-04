@@ -6,23 +6,32 @@
       = link_to "Edit", edit_workout_path(@workout), :class => "btn btn-large"
     .right
       = link_to "Add Score", new_workout_score_path(@workout), :class => "btn btn-large btn-primary"
--unless @workout.name.empty?
-  .row
-    .span12
-      %h2= @workout.name
+.row
+  .span12
+    %h2= @workout.name.empty? ? @workout.created_at.to_s(:long) : @workout.name
+    - unless @workout.name.empty?
+      %h4= @workout.created_at.to_s(:long)
 .row
   .span12
     %p= simple_format @workout.workout
 - unless @workout.scores.count.eql? 0
+  .row
+    .span12
+      .btn-group.btn-header
+        = link_to "All Scores", "?filter=all", :class => "btn"
+        = link_to "My Scores", "?filter=mine", :class => "btn"
   %table.table.table-bordered.table-striped
     %colgroup
       %col.span3
-      %col.span9
+      %col.span6
+      %col.span3
     %thead
       %th Completed
       %th Score
+      %th User
     %tbody
-      - for score in @workout.scores
+      - for score in (!params[:filter].eql?('mine') ? @workout.scores : @workout.user_scores(current_user))
         %tr
           %td= score.created_at.to_s(:long)
           %td= simple_format score.score
+          %td= score.user.email
