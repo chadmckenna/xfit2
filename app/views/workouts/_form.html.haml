@@ -4,11 +4,17 @@
       = f.error_messages
       %fieldset
         .control-group
-          = f.label :workout_name, :class => "control-label", :size => '35'
+          = f.label :workout_name, :class => "control-label"
           .controls
             = f.text_field :name
             %p.help-block
               The workout name is optional. If you do not input a name, it will be displayed as the date it was created.
+        .control-group
+          = label_tag :benchmark, "Make benchmark?", :class => "control-label"
+          .controls
+            = check_box_tag :benchmark
+            %p.help-block
+              Check this if you wish to make this workout one of your benchmark workouts (Such as Fran, Jackie, Helen, etc.)
         .control-group
           = f.label :workout, :class => "control-label"
           .controls

@@ -12,5 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require visualize
 //= require_tree .
 //= require twitter/bootstrap

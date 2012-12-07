@@ -11,6 +11,7 @@ class WorkoutsController < ApplicationController
 
   def show
     @workout = Workout.find(params[:id])
+    @scores = (!params[:filter].eql?('mine') ? @workout.scores : @workout.user_scores(current_user))
   end
 
   def new
@@ -21,8 +22,18 @@ class WorkoutsController < ApplicationController
     @workout = Workout.new(params[:workout])
     @workout.user_id = current_user.id
     if @workout.save
+      if params[:benchmark].eql? "1"
+        @benchmark = WorkoutBenchmark.new({ :workout_id => @workout.id, :user_id => @workout.user_id })
+        if @benchmark.save
+          flash[:success] = "Successfully created new benchmark workout."
+          redirect_to workout_benchmark_path(@benchmark) and return
+        else
+          flash[:error] = "Could not save as a benchmark workout."
+          render :action => 'new'
+        end
+      end
       flash[:success] = "Successfully created workout."
-      redirect_to @workout
+      redirect_to @workout and return
     else
       render :action => 'new'
     end

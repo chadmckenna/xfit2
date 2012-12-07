@@ -1,0 +1,26 @@
+- title "Workout Benchmark"
+.row
+  .span12
+    .left.btn-header
+      = link_to "All Benchmarks", workout_benchmarks_path, :class => "btn btn-large"
+      = link_to "All Workouts", workouts_path, :class => "btn btn-large"
+    .right
+      = link_to "Add Score", new_workout_score_path(@workout_benchmark.workout), :class => "btn btn-large btn-primary"
+.row
+  .span10
+    %h2#title= @workout_benchmark.workout.name
+    %p= simple_format @workout_benchmark.workout.workout
+  .span2
+    = link_to "Graph", "#", :class => "btn btn-large btn-success right", :id => "graphBenchmark"
+- unless current_user.my_recent_scores(@workout_benchmark.workout).count.eql? 0
+  .row
+    .span12
+      %table.scores.table.table-bordered.table-striped
+        %thead
+          %tr
+            - for score in current_user.my_scores(@workout_benchmark.workout)
+              %th{:scope => "col"}= score.created_at.to_s(:long)
+        %tbody
+          %tr
+            - for score in current_user.my_scores(@workout_benchmark.workout)
+              %td{:scope => "col"}= score.to_parsed_score

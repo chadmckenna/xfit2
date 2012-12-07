@@ -14,7 +14,7 @@
 .row
   .span12
     %p= simple_format @workout.workout
-- unless @workout.scores.count.eql? 0
+- unless @scores.count.eql? 0
   .row
     .span12
       .btn-group.btn-header
@@ -30,7 +30,7 @@
       %th Score
       %th User
     %tbody
-      - for score in (!params[:filter].eql?('mine') ? @workout.scores : @workout.user_scores(current_user))
+      - for score in @scores
         %tr
           %td= score.created_at.to_s(:long)
           %td= simple_format score.score
