@@ -13,7 +13,7 @@
           .btn-group.right
             %a.btn.btn-primary{:href => workout_benchmark_path(workout_benchmark)}
               More
-            %button.btn.btn-primary.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+            %button.btn.btn-primary.dropdown-toggle{"data-toggle" => "dropdown"}
               %span.caret
             %ul.dropdown-menu.pull-right
               %li= link_to 'Add Score', new_workout_score_path(workout_benchmark.workout)

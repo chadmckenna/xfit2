@@ -10,8 +10,6 @@
   .span10
     %h2#title= @workout_benchmark.workout.name
     %p= simple_format @workout_benchmark.workout.workout
-  .span2
-    = link_to "Graph", "#", :class => "btn btn-large btn-success right", :id => "graphBenchmark"
 - unless current_user.my_recent_scores(@workout_benchmark.workout).count.eql? 0
   .row
     .span12
