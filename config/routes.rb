@@ -10,4 +10,5 @@ Xfit2::Application.routes.draw do
   match "/scores/new/:workout_id" => 'scores#new'
   resources :workouts
   root :to => 'workouts#index'
+  resources :search
 end
