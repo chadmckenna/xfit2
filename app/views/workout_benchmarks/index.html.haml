@@ -4,11 +4,15 @@
     .span12
       .btn-header
         = link_to "New Benchmark", new_workout_path, :class => "btn btn-primary btn-large"
+  .row
+    .span12.text-align-center
+      = will_paginate @workout_benchmarks
   - for workout_benchmark in @workout_benchmarks
     .benchmark
       .row
         .span10
-          %h2= workout_benchmark.workout.name.empty? ? workout_benchmark.workout.created_at.to_s(:long) : workout_benchmark.workout.name
+          %h2
+            = link_to workout_benchmark_name(workout_benchmark), workout_benchmark_path(workout_benchmark)
         .span2
           .btn-group.right
             %a.btn.btn-primary{:href => workout_benchmark_path(workout_benchmark)}

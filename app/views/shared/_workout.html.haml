@@ -1,0 +1,18 @@
+.workout
+  .row
+    .span10
+      %h2= link_to workout_name(@workout), workout_path(@workout)
+      - unless @workout.name.empty?
+        %h4= @workout.created_at.to_s(:long)
+    .span2
+      .btn-group.right
+        %a.btn.btn-primary{:href => new_workout_score_path(@workout)}
+          Add Score
+        %button.btn.btn-primary.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+          %span.caret
+        %ul.dropdown-menu.pull-right
+          %li= link_to "View Workout", @workout
+          %li= link_to "Edit Workout", edit_workout_path(@workout)
+  .row
+    .span12
+      = simple_format @workout.workout

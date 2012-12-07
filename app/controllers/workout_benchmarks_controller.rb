@@ -1,6 +1,6 @@
 class WorkoutBenchmarksController < ApplicationController
   def index
-    @workout_benchmarks = WorkoutBenchmark.all
+    @workout_benchmarks = WorkoutBenchmark.where( user_id: current_user.id ).paginate(:page => params[:page]).order('created_at DESC')
   end
 
   def show
