@@ -7,33 +7,9 @@
   .row
     .span12.text-align-center
       = will_paginate @workout_benchmarks
-  - for workout_benchmark in @workout_benchmarks
-    .benchmark
-      .row
-        .span10
-          %h2
-            = link_to workout_benchmark_name(workout_benchmark), workout_benchmark_path(workout_benchmark)
-        .span2
-          .btn-group.right
-            %a.btn.btn-primary{:href => workout_benchmark_path(workout_benchmark)}
-              More
-            %button.btn.btn-primary.dropdown-toggle{"data-toggle" => "dropdown"}
-              %span.caret
-            %ul.dropdown-menu.pull-right
-              %li= link_to 'Add Score', new_workout_score_path(workout_benchmark.workout)
-              %li= link_to 'Remove Benchmark', workout_benchmark, :confirm => 'Are you sure?', :method => :delete
-      - unless current_user.my_scores(workout_benchmark.workout).count.eql? 0
-        .row
-          .span12
-            %table.table.table-bordered.table-striped
-              %colgroup
-                %col.span4
-                %col.span8
-              %thead
-                %th Completed
-                %th Score
-              %tbody
-                - for score in current_user.my_recent_scores(workout_benchmark.workout, 3)
-                  %tr
-                    %td= score.created_at.to_s(:long)
-                    %td= simple_format score.score
+
+  - for @workout_benchmark in @workout_benchmarks
+    = render partial: "shared/workout_benchmark"
+  .row
+    .span12.text-align-center
+      = will_paginate @workout_benchmarks

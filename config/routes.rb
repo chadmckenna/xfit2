@@ -8,7 +8,9 @@ Xfit2::Application.routes.draw do
 
   resources :scores
   match "/scores/new/:workout_id" => 'scores#new'
-  resources :workouts
+  resources :workouts do
+    get 'to_benchmark', on: :member
+  end
   root :to => 'workouts#index'
   resources :search
 end

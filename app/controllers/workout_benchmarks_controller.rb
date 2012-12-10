@@ -5,6 +5,7 @@ class WorkoutBenchmarksController < ApplicationController
 
   def show
     @workout_benchmark = WorkoutBenchmark.find(params[:id])
+    @scores = current_user.my_scores(@workout_benchmark.workout)
   end
 
   def new

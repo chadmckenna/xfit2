@@ -10,15 +10,15 @@
   .span10
     %h2#title= @workout_benchmark.workout.name
     %p= simple_format @workout_benchmark.workout.workout
-- unless current_user.my_recent_scores(@workout_benchmark.workout).count.eql? 0
+- unless has_recent_scores?(current_user, @workout_benchmark)
   .row
     .span12
       %table.scores.table.table-bordered.table-striped
         %thead
           %tr
-            - for score in current_user.my_scores(@workout_benchmark.workout)
+            - for score in @scores
               %th{:scope => "col"}= score.created_at.to_s(:long)
         %tbody
           %tr
-            - for score in current_user.my_scores(@workout_benchmark.workout)
+            - for score in @scores
               %td{:scope => "col"}= score.to_parsed_score

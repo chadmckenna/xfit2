@@ -57,4 +57,15 @@ class WorkoutsController < ApplicationController
     @workout.destroy
     redirect_to workouts_url, :notice => "Successfully destroyed workout."
   end
+
+  def to_benchmark
+    @workout_benchmark = WorkoutBenchmark.new(workout_id: params[:id], user_id: current_user.id)
+    if @workout_benchmark.save
+      flash[:success] = "Successfully saved this workout to your benchmarks."
+      redirect_to workout_benchmark_path(@workout_benchmark)
+    else
+      flash[:error] = "Could not save your workout as a benchmark, please try again."
+      redirect_to workouts_path
+    end
+  end
 end

@@ -13,6 +13,7 @@
         %ul.dropdown-menu.pull-right
           %li= link_to "View Workout", @workout
           %li= link_to "Edit Workout", edit_workout_path(@workout)
+          %li= link_to "Add as Benchmark", to_benchmark_workout_path(@workout)
   .row
     .span12
       = simple_format @workout.workout
